@@ -8,6 +8,14 @@ import java.util.Random;
  */
 public class BruitAleatoire extends Bruit2D {
 
-    public BruitAleatoire(long graine, double resolution);
-    
+    private final Random random = new Random(getGraine());
+
+    public BruitAleatoire(long graine, double resolution){
+        super(graine, resolution);
+    }
+
+    @Override
+    public double bruit2D(double x, double y) {
+        return random.nextDouble(5);
+    }
 }
