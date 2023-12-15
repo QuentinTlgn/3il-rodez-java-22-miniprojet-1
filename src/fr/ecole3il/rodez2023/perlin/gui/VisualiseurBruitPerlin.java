@@ -109,9 +109,9 @@ public class VisualiseurBruitPerlin extends JFrame {
             // Utilise la résolution par défaut si la valeur entrée n'est pas valide
         }
         
-        
-        ////////// CODE À MODIFIER 
-        noiseImage = new truc;
+        ////////// CODE À MODIFIER
+        BruitPerlin2D bruitPerlin2D = new BruitPerlin2D(Long.parseLong(seedField.getText()), resolution);
+        noiseImage = new ImageBruit(bruitPerlin2D);
         
         ////////// FIN CODE À MODIFIER
         tickImageButton.setEnabled(true); // Désactiver le bouton initialement
