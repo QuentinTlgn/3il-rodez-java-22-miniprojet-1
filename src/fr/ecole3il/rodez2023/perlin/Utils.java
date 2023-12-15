@@ -45,7 +45,7 @@ public class Utils {
      * @param seed La graine utilisée pour le mélange.
      * @return Un nouveau tableau contenant les éléments mélangés.
      * 
-     * @author philibert roquart, fainéant, Quentin TAULEIGNE
+     * @author Quentin TAULEIGNE
      */
     public static int[] melanger(int[] tab, long seed) {
 
