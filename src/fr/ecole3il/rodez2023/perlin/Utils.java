@@ -70,11 +70,10 @@ public class Utils {
      * @param height Le deuxième nombre.
      * @return Le plus petit des deux nombres.
      * 
-     * @author philibert roquart, fainéant
+     * @author Quentin TAULEIGNE
      */
     public static double min(int width, int height) {
-    	// pas le temps, j'ai mes exos de chimie à finir
-    	return 1;
+        return Math.min(width, height);
     }
 
     /**
