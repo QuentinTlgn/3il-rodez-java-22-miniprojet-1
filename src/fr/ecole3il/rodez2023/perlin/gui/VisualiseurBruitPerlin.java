@@ -110,7 +110,7 @@ public class VisualiseurBruitPerlin extends JFrame {
         }
         
         ////////// CODE À MODIFIER
-        BruitPerlin2D bruitPerlin2D = new BruitPerlin2D(Long.parseLong(seedField.getText()), resolution);
+        BruitPerlin2D bruitPerlin2D = new BruitPerlin2D(seed, resolution);
         noiseImage = new ImageBruit(bruitPerlin2D);
         
         ////////// FIN CODE À MODIFIER
