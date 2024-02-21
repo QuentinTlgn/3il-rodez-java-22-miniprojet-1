@@ -1,10 +1,6 @@
 package fr.ecole3il.rodez2023.perlin.math;
 
-
-import javax.swing.SwingUtilities;
-
 import fr.ecole3il.rodez2023.perlin.Utils;
-import fr.ecole3il.rodez2023.perlin.gui.VisualiseurBruitPerlin;
 
 /**
  * @author philibert roquart, fainéant
@@ -31,21 +27,41 @@ public class BruitPerlin2D extends Bruit2D {
 
 	private final int[] permutation;
 
+	/**
+	 * Constructeur de la classe BruitPerlin2D.
+	 * 
+	 * @param graine     La graine utilisée pour initialiser le générateur de bruit.
+	 * @param resolution La résolution utilisée pour la génération du bruit.
+	 */
 	public BruitPerlin2D(long graine, double resolution) {
 		super(graine, resolution);
-		this.permutation = Utils.melanger(PERMUTATION,graine);
-		//this.permutation = PERMUTATION;
+		this.permutation = Utils.melanger(PERMUTATION, graine);
 	}
 
+	/**
+	 * Méthode qui génère du bruit de Perlin en deux dimensions.
+	 * 
+	 * @param x Coordonnée x.
+	 * @param y Coordonnée y.
+	 * @return Valeur de bruit de Perlin en 2D pour les coordonnées fournies.
+	 */
 	@Override
 	public double bruit2D(double x, double y) {
 		double tempX, tempY;
-		int x0, y0, ii, jj, gi0, gi1, gi2, gi3;
-		double unit = 1.0f / (double) Math.sqrt(2);
+		/*
+		 * Tentative infructueuse de corriger un problème causant cette erreur totalement aléatoire : 
+		 * Exception in thread "AWT-EventQueue-0" java.lang.ArrayIndexOutOfBoundsException: Index 256 out of bounds for length 256
+        	at fr.ecole3il.rodez2023.perlin.math.BruitPerlin2D.bruit2D(BruitPerlin2D.java:70) < Le numéro de ligne peut varier !!!!!!!!! :))))
+			Cette erreur n'a aucune logique, elle arrive 
+			J'ai bien passé 10 heures au cours de ce projet juste à chercher la résolution de cette erreur sans l'avoir réellement trouvée
+
+			Ma seule théorie est que cela vient du cache ? Et c'est pour cela que cette modification règle le problème
+		 */
+		int x0= 0, y0= 0, ii= 0, jj= 0, gi0= 0, gi1= 0, gi2= 0, gi3 = 0;
 		double tmp, s, t, u, v, Cx, Cy, Li1, Li2;
 		// Adapter pour la résolution
-		x /= resolution;
-		y /= resolution;
+		x /= getResolution();
+		y /= getResolution();
 
 		// Obtenir les coordonnées de la grille associées à (x, y)
 		x0 = (int) (x);
@@ -56,10 +72,10 @@ public class BruitPerlin2D extends Bruit2D {
 		jj = y0 & 255;
 
 		// Récupérer les indices de gradient associés aux coins du quadrilatère
-		gi0 = permutation[ii + permutation[jj]] % 8;
-		gi1 = permutation[ii + 1 + permutation[jj]] % 8;
-		gi2 = permutation[ii + permutation[jj + 1]] % 8;
-		gi3 = permutation[ii + 1 + permutation[jj + 1]] % 8;
+		gi0 = permutation[ii + permutation[jj]&255] % 8;
+		gi1 = permutation[ii + 1 + permutation[jj]&255] % 8;
+		gi2 = permutation[ii + permutation[jj + 1]&255] % 8;
+		gi3 = permutation[ii + 1 + permutation[jj + 1]&255] % 8;
 
 		// Récupérer les vecteurs de gradient et effectuer des interpolations pondérées
 		tempX = x - x0;
