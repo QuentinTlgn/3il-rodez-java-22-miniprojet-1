@@ -22,3 +22,9 @@ On se retrouverait avec du code dupliqué et très compliqué à faire évoluer.
 La solution à préférer serait d'avoir une classe Terrain qui contient une référence à un objet de type TypeTerrain qui représente le type spécifique de terrain.
 
 
+### Au terrain, maintenant
+**Question :** quel type utilisez-vous ?
+J'utilise le type double, celui-ci permettant de réaliser la demande du sujet : On veut pouvoir rentrer des informations décimales suffisamment précises (au moins en double précision)
+
+**Question :** pourquoi sortir, selon vous, ce bout d'algorithme de la classe ?
+Ce n'est pas le rôle de la classe
